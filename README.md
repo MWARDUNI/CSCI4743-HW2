@@ -92,23 +92,30 @@ a=6, and Bob chooses the secret key b=16. Using the Diffie-Hellman Key Exchange
 Protocol, determine the common secret key shared between Alice and Bob. Show the steps
 taken to reach this result.
 
-$A = g^{a}  mod  p$
-  $= 5^{6}  mod  23$
+The proper LaTeX syntax for the equation \(A = g^a \mod p\) is:
+
+```latex
+A = g^a \mod p
+  = 5^6 \mod 23
   = 8
 
-B = g^b mod p
-  = 5^16 mod 23
+B = g^b \mod p
+  = 5^16 \mod 23
   = 3
 
 Alice:
-s = B^a mod 23
-  = 3^6 mod 23
+s = B^a \mod 23
+  = 3^6 \mod 23
   = 16
   
 Bob:
-s = A^b mod 23
-  = 8^16 mod 23
+s = A^b \mod 23
+  = 8^16 \mod 23
   = 16
+```
+
+
+
 
 
 
