@@ -7,55 +7,55 @@ confusion, and (3) error propagation. A) Which one has higher diffusion/confusio
 propagation? B) Which ones have lower diffusion/confusion/error propagation? Explain and
 justify your answers. For block ciphers, make sure to consider “modes of operation” in your response.
 
-	Comparison of Stream Ciphers and Block Ciphers:
-	A) Higher Diffusion/Confusion/Error Propagation:
-	
-	Block Ciphers generally have higher diffusion and confusion properties compared to Stream Ciphers. This is because Block Ciphers operate on fixed-size blocks of data, and their design incorporates complex diffusion and confusion layers, such as substitution boxes (S-boxes) and permutation operations. These layers ensure that even a small change in the input block results in a significant change in the output block, providing strong diffusion. Additionally, the key is mixed into the cipher in a highly nonlinear way, creating confusion.
-	
-	Regarding error propagation, Block Ciphers have higher error propagation when used in certain modes of operation, such as Electronic Codebook (ECB) mode or Cipher Block Chaining (CBC) mode without proper error handling. In these modes, a single bit error in the ciphertext can affect an entire block of the plaintext.
-	
-	B) Lower Diffusion/Confusion/Error Propagation:
-	
-	Stream Ciphers typically have lower diffusion and confusion properties compared to Block Ciphers. This is because Stream Ciphers operate on individual bits or bytes of data, and their design focuses more on generating a pseudorandom keystream that is combined with the plaintext. The diffusion and confusion properties rely heavily on the strength of the keystream generation algorithm.
-	
-	Regarding error propagation, Stream Ciphers generally have lower error propagation. If a single bit error occurs in the ciphertext, it typically affects only the corresponding bit or byte in the plaintext, and the error does not propagate further.
-	
-	However, it's important to note that the modes of operation for Block Ciphers can affect their diffusion, confusion, and error propagation properties. For example, the Cipher Feedback (CFB) and Output Feedback (OFB) modes of operation can provide better error propagation characteristics for Block Ciphers, as errors in the ciphertext only affect a limited number of plaintext bits or bytes.
+Comparison of Stream Ciphers and Block Ciphers:
+A) Higher Diffusion/Confusion/Error Propagation:
 
-	1. Diffusion
-	Diffusion refers to the property of an encryption algorithm where the influence of one plaintext symbol is spread over many ciphertext symbols, making the relationship between the plaintext and ciphertext as complex as possible. It aims to dissipate statistical structure of the plaintext over the entirety of the ciphertext.
-	
-	Block Ciphers: Generally exhibit higher diffusion than stream ciphers, especially when considering modes of operation like Cipher Block Chaining (CBC) or Counter (CTR) mode. These modes ensure that changes in a single bit of the plaintext will affect many bits in the output ciphertext, not just in the immediate block but also in subsequent blocks in some modes.
-	
-	Stream Ciphers: Typically, have lower diffusion compared to block ciphers in their basic form. Each bit of the plaintext is encrypted one at a time, often with a bitwise XOR operation against a pseudorandom cipher stream. Therefore, a change in one bit of the plaintext changes only one bit in the ciphertext.
-	
-	2. Confusion
-	Confusion relates to making the relationship between the ciphertext and the secret key as complex as possible, typically through substitution mechanisms. It's about ensuring that an attacker cannot deduce the key even if they get some knowledge of the plaintext and corresponding ciphertext.
-	
-	Block Ciphers: Achieve high levels of confusion, particularly through the use of complex substitution boxes (S-boxes) and multiple rounds of encryption. The design of block ciphers often includes a mix of different operations (substitution, permutation) to maximize confusion.
-	
-	Stream Ciphers: The level of confusion in stream ciphers depends on the complexity of the key stream generator. While good stream ciphers are designed to ensure high confusion, their approach to achieving confusion is inherently different and may not inherently match the complexity of operations seen in block ciphers.
-	
-	3. Error Propagation
-	Error Propagation refers to how errors in the ciphertext (due to transmission errors, tampering, etc.) affect the decryption process and the resulting plaintext.
-	
-	Block Ciphers in ECB mode: Have poor error propagation; an error in one ciphertext block affects only the decryption of that particular block.
+Block Ciphers generally have higher diffusion and confusion properties compared to Stream Ciphers. This is because Block Ciphers operate on fixed-size blocks of data, and their design incorporates complex diffusion and confusion layers, such as substitution boxes (S-boxes) and permutation operations. These layers ensure that even a small change in the input block results in a significant change in the output block, providing strong diffusion. Additionally, the key is mixed into the cipher in a highly nonlinear way, creating confusion.
 
-	Block Ciphers in modes like CBC: Exhibit better error propagation, as an error in one block affects the decryption of the current and subsequent block, making error detection easier.
-	
-	Stream Ciphers: Generally have low error propagation, similar to block ciphers in ECB mode. An error in the ciphertext typically affects only a single bit or a small number of bits in the decrypted plaintext, making it less disruptive but also potentially harder to detect errors.
-	
-	Summary:
-	A) Higher Diffusion/Confusion/Error Propagation:
-	
-	Diffusion and Confusion: Block ciphers, especially when considering certain modes of operation, typically offer higher diffusion and confusion due to their structure and operational complexity.
-	Error Propagation: Depends on the mode of operation for block ciphers; some modes like CBC can have higher error propagation compared to stream ciphers or block ciphers in ECB mode.
-	B) Lower Diffusion/Confusion/Error Propagation:
-	
-	Diffusion: Stream ciphers have lower diffusion since they typically encrypt data bit by bit.
-	Confusion: Depending on the key stream generator's complexity, stream ciphers might exhibit lower confusion compared to block ciphers.
-	Error Propagation: Stream ciphers and block ciphers in ECB mode have lower error propagation since an error affects only a small part of the message.
-	In conclusion, block ciphers tend to offer higher diffusion and confusion, especially when using modes that enhance these properties. Error propagation is more nuanced and depends significantly on the specific mode of operation for block ciphers. Stream ciphers, while potentially lower in diffusion and confusion, offer advantages in terms of simplicity and speed for certain applications, with typically lower error propagation characteristics.
+Regarding error propagation, Block Ciphers have higher error propagation when used in certain modes of operation, such as Electronic Codebook (ECB) mode or Cipher Block Chaining (CBC) mode without proper error handling. In these modes, a single bit error in the ciphertext can affect an entire block of the plaintext.
+
+B) Lower Diffusion/Confusion/Error Propagation:
+
+Stream Ciphers typically have lower diffusion and confusion properties compared to Block Ciphers. This is because Stream Ciphers operate on individual bits or bytes of data, and their design focuses more on generating a pseudorandom keystream that is combined with the plaintext. The diffusion and confusion properties rely heavily on the strength of the keystream generation algorithm.
+
+Regarding error propagation, Stream Ciphers generally have lower error propagation. If a single bit error occurs in the ciphertext, it typically affects only the corresponding bit or byte in the plaintext, and the error does not propagate further.
+
+However, it's important to note that the modes of operation for Block Ciphers can affect their diffusion, confusion, and error propagation properties. For example, the Cipher Feedback (CFB) and Output Feedback (OFB) modes of operation can provide better error propagation characteristics for Block Ciphers, as errors in the ciphertext only affect a limited number of plaintext bits or bytes.
+
+1. Diffusion
+Diffusion refers to the property of an encryption algorithm where the influence of one plaintext symbol is spread over many ciphertext symbols, making the relationship between the plaintext and ciphertext as complex as possible. It aims to dissipate statistical structure of the plaintext over the entirety of the ciphertext.
+
+Block Ciphers: Generally exhibit higher diffusion than stream ciphers, especially when considering modes of operation like Cipher Block Chaining (CBC) or Counter (CTR) mode. These modes ensure that changes in a single bit of the plaintext will affect many bits in the output ciphertext, not just in the immediate block but also in subsequent blocks in some modes.
+
+Stream Ciphers: Typically, have lower diffusion compared to block ciphers in their basic form. Each bit of the plaintext is encrypted one at a time, often with a bitwise XOR operation against a pseudorandom cipher stream. Therefore, a change in one bit of the plaintext changes only one bit in the ciphertext.
+
+2. Confusion
+Confusion relates to making the relationship between the ciphertext and the secret key as complex as possible, typically through substitution mechanisms. It's about ensuring that an attacker cannot deduce the key even if they get some knowledge of the plaintext and corresponding ciphertext.
+
+Block Ciphers: Achieve high levels of confusion, particularly through the use of complex substitution boxes (S-boxes) and multiple rounds of encryption. The design of block ciphers often includes a mix of different operations (substitution, permutation) to maximize confusion.
+
+Stream Ciphers: The level of confusion in stream ciphers depends on the complexity of the key stream generator. While good stream ciphers are designed to ensure high confusion, their approach to achieving confusion is inherently different and may not inherently match the complexity of operations seen in block ciphers.
+
+3. Error Propagation
+Error Propagation refers to how errors in the ciphertext (due to transmission errors, tampering, etc.) affect the decryption process and the resulting plaintext.
+
+Block Ciphers in ECB mode: Have poor error propagation; an error in one ciphertext block affects only the decryption of that particular block.
+
+Block Ciphers in modes like CBC: Exhibit better error propagation, as an error in one block affects the decryption of the current and subsequent block, making error detection easier.
+
+Stream Ciphers: Generally have low error propagation, similar to block ciphers in ECB mode. An error in the ciphertext typically affects only a single bit or a small number of bits in the decrypted plaintext, making it less disruptive but also potentially harder to detect errors.
+
+Summary:
+A) Higher Diffusion/Confusion/Error Propagation:
+
+Diffusion and Confusion: Block ciphers, especially when considering certain modes of operation, typically offer higher diffusion and confusion due to their structure and operational complexity.
+Error Propagation: Depends on the mode of operation for block ciphers; some modes like CBC can have higher error propagation compared to stream ciphers or block ciphers in ECB mode.
+B) Lower Diffusion/Confusion/Error Propagation:
+
+Diffusion: Stream ciphers have lower diffusion since they typically encrypt data bit by bit.
+Confusion: Depending on the key stream generator's complexity, stream ciphers might exhibit lower confusion compared to block ciphers.
+Error Propagation: Stream ciphers and block ciphers in ECB mode have lower error propagation since an error affects only a small part of the message.
+In conclusion, block ciphers tend to offer higher diffusion and confusion, especially when using modes that enhance these properties. Error propagation is more nuanced and depends significantly on the specific mode of operation for block ciphers. Stream ciphers, while potentially lower in diffusion and confusion, offer advantages in terms of simplicity and speed for certain applications, with typically lower error propagation characteristics.
 
 
 1.2. (10 points): A blockchain-based cryptocurrency uses proof-of-work to limit the rate of
