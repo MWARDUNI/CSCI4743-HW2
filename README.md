@@ -8,9 +8,10 @@ propagation? B) Which ones have lower diffusion/confusion/error propagation? Exp
 justify your answers. For block ciphers, make sure to consider “modes of operation” in your response.
 
 Comparison of Stream Ciphers and Block Ciphers:
+
 A) Higher Diffusion/Confusion/Error Propagation:
 
-Block Ciphers generally have higher diffusion and confusion properties compared to Stream Ciphers. This is because Block Ciphers operate on fixed-size blocks of data, and their design incorporates complex diffusion and confusion layers, such as substitution boxes (S-boxes) and permutation operations. These layers ensure that even a small change in the input block results in a significant change in the output block, providing strong diffusion. Additionally, the key is mixed into the cipher in a highly nonlinear way, creating confusion.
+> Block Ciphers generally have higher diffusion and confusion properties compared to Stream Ciphers. This is because Block Ciphers operate on fixed-size blocks of data, and their design incorporates complex diffusion and confusion layers, such as substitution boxes (S-boxes) and permutation operations. These layers ensure that even a small change in the input block results in a significant change in the output block, providing strong diffusion. Additionally, the key is mixed into the cipher in a highly nonlinear way, creating confusion.
 
 Regarding error propagation, Block Ciphers have higher error propagation when used in certain modes of operation, such as Electronic Codebook (ECB) mode or Cipher Block Chaining (CBC) mode without proper error handling. In these modes, a single bit error in the ciphertext can affect an entire block of the plaintext.
 
