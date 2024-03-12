@@ -94,31 +94,21 @@ taken to reach this result.
 
 
 $(A = g^a \mod p$)
-  
   $= 5^6 mod 23$
-  
   $= 8$
 
 $(B = g^b \mod p$)
-  
   $= 5^16 \mod 23$
-  
   $= 3$
-
-Alice:
-
-$(s = B^a \mod 23$)
-
-  $= 3^6 \mod 23$
   
+Alice:
+$(s = B^a \mod 23$)
+  $= 3^6 \mod 23$
   $= 16$
   
 Bob:
-
 $(s = A^b \mod 23$)
-
   $= 8^16 \mod 23$
-  
   $= 16$
 
 
