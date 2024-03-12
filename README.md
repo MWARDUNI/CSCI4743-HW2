@@ -94,9 +94,11 @@ taken to reach this result.
 
 The proper LaTeX syntax for the equation \(A = g^a \mod p\) is:
 
+$(A = g^a \mod p$)
 ```latex
-A = g^a \mod p
-  = 5^6 \mod 23
+\(A = g^a \mod p\)
+A = g^a mod p
+  = 5^6 mod 23
   = 8
 
 B = g^b \mod p
