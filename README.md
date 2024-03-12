@@ -94,7 +94,7 @@ taken to reach this result.
 
 
 $(A = g^a \mod p$)
-  $= 5^6 mod 23$
+  $= 5^6 \mod 23$
   $= 8$
 
 $(B = g^b \mod p$)
