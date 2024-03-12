@@ -114,9 +114,6 @@ $(s = A^b \mod 23$)
 
 
 
-
-
-
 1.4. (10 points) A) If anyone can solve the Discrete Logarithm Problem (DLP), they can
 easily break this cipher. Explain which cipher and why this is the case. B) If anyone can
 solve the integer factorization problem, they can easily break this cipher. Explain which
@@ -136,28 +133,28 @@ cipher and why this is the case. Focus on the ciphers discussed in the class.
 exponent e = 5. Bob wants to send Alice the message m=50. What ciphertext does Bob send
 to Alice? Show the steps taken to reach this result.
 
-1. Find the prime factors p and q of the modulus N:
-   - N = 221 = 13 × 17
-   - So, p = 13 and q = 17
+1. Find the prime factors $p$ and $q$ of the modulus $N$:
+   - $N = 221 = 13 × 17$
+   - $p = 13$ and $q = 17$
 
-2. Calculate the totient function φ(N):
-   - φ(N) = (p - 1)(q - 1)
-   - φ(221) = (13 - 1)(17 - 1)
-   - φ(221) = 12 × 16 = 192
+2. Calculate the totient function $φ(N)$:
+   - $φ(N) = (p - 1)(q - 1)$
+   - $φ(221) = (13 - 1)(17 - 1)$
+   - $φ(221) = 12 × 16 = 192$
 
-3. Check if the public exponent e is valid:
-   - e should be coprime with φ(N)
-   - gcd(e, φ(N)) should be 1
-   - gcd(5, 192) = 1, so e = 5 is a valid public exponent
+3. Check if the public exponent $e$ is valid:
+   - $e$ should be coprime with $φ(N)$
+   - $gcd(e, φ(N))$ should be 1
+   - $gcd(5, 192) = 1$, so $e = 5$ is a valid public exponent
 
-4. Encrypt the message m using the public key (N, e):
-   - Ciphertext c ≡ m^e (mod N)
-   - c ≡ 50^5 (mod 221)
-   - 50^5 = 312,500,000
-   - c ≡ 50^5 (mod 221)
-   - So, the ciphertext c = 33
+4. Encrypt the message $m$ using the public key $(N, e)$:
+   - Ciphertext $c ≡ m^{e} (\mod N$)
+   - $c ≡ 50^{5} (\mod 221)$
+   - $50^{5} = 312,500,000$
+   - $c ≡ 50^{5} (\mod 221$)
+   - ciphertext $c = 33$
 
-Bob will send the ciphertext c = 33 to Alice.
+Bob will send the ciphertext $c = 33$ to Alice.
 
 
 
@@ -195,13 +192,13 @@ In the case of 3AES, the attacker would need to find a collision in the 128-bit 
 
 According to the birthday paradox, the probability of a collision after $q$ queries is approximately:
 
-$P(q) \approx 1 - e^{-q^2/2n}$
+   $P(q) \approx 1 - e^{-q^2/2n}$
 
-where $n = 2^{128}$ (the number of possible outputs).
+   where $n = 2^{128}$ (the number of possible outputs).
 
 To have a 50% probability of finding a collision, the number of queries needed is:
 
-$q \approx \sqrt{2n \cdot \ln(2)} \approx 2^{64}$
+   $q \approx \sqrt{2n \cdot \ln(2)} \approx 2^{64}$
 
 This is still an extremely large number of queries, making the birthday attack impractical against 3AES.
 
@@ -234,12 +231,72 @@ Formally and informally define every communication step and use discussed notati
 our discussion on Kerberos) to show what specific messages are exchanged between which
 entities and why.
 
+### Notation:
+
+- $C$: Client
+- $V$: Service Server
+- $AS$: Authentication Server
+- $TGS$: Ticket-granting Server
+- $PU_X$: Public key of entity $X$
+- $PR_X$: Private key of entity $X$
+- $E_{PU_X}(M)$: Message $M$ encrypted with the public key of entity $X$
+- $E_{PR_X}(M)$: Message $M$ encrypted with the private key of entity $X$
+- $K_{C,TGS}$: Session key between client and TGS
+- $K_{C,V}$: Session key between client and service server $V$
+
+### Authentication process:
+
+1. $C \rightarrow AS$: $C, E_{PU_{AS}}(password)$
+   - Client sends its identity and password encrypted with the public key of $AS$.
+
+2. $AS \rightarrow C$: $E_{PU_C}(K_{C,TGS}), E_{PU_{TGS}}(C, K_{C,TGS})$
+   - $AS$ verifies the password using the centralized credentials database.
+   - If the password is correct, $AS$ generates a session key $K_{C,TGS}$ for communication between $C$ and $TGS$.
+   - $AS$ sends the session key $K_{C,TGS}$ encrypted with the public key of $C$ and a ticket containing $C$'s identity and $K_{C,TGS}$ encrypted with the public key of $TGS$.
+
+3. $C \rightarrow TGS$: $E_{PU_{TGS}}(C, K_{C,TGS}), E_{PR_C}(timestamp)$
+   - Client decrypts the session key $K_{C,TGS}$ using its private key.
+   - Client sends the ticket (containing $C$'s identity and $K_{C,TGS}$) encrypted with $TGS$'s public key and a timestamp encrypted with $C$'s private key.
+
+4. $TGS \rightarrow C$: $E_{PU_C}(K_{C,V}), E_{PU_V}(C, K_{C,V})$
+   - $TGS$ decrypts the ticket using its private key to obtain $C$'s identity and $K_{C,TGS}$.
+   - $TGS$ verifies the timestamp by decrypting it with $C$'s public key.
+   - If the timestamp is valid, $TGS$ generates a new session key $K_{C,V}$ for communication between $C$ and $V$.
+   - $TGS$ sends the session key $K_{C,V}$ encrypted with $C$'s public key and a ticket containing $C$'s identity and $K_{C,V}$ encrypted with $V$'s public key.
+
+5. $C \rightarrow V$: $E_{PU_V}(C, K_{C,V}), E_{PR_C}(timestamp)$
+   - Client decrypts the session key $K_{C,V}$ using its private key.
+   - Client sends the ticket (containing $C$'s identity and $K_{C,V}$) encrypted with $V$'s public key and a new timestamp encrypted with $C$'s private key.
+
+6. $V \rightarrow C$: $E_{K_{C,V}}(timestamp+1)$
+   - $V$ decrypts the ticket using its private key to obtain $C$'s identity and $K_{C,V}$.
+   - $V$ verifies the timestamp by decrypting it with $C$'s public key.
+   - If the timestamp is valid, $V$ increments the timestamp and encrypts it with the session key $K_{C,V}$ to prove its identity to $C$.
+
+> In this variation, the session keys $K_{C,TGS}$ and $K_{C,V}$ are exchanged using public-key cryptography (RSA) instead of symmetric ciphers. The private keys are securely stored on each entity, and the public keys are used for encryption. The $AS$ is responsible for verifying the password using a centralized credentials database, but no symmetric ciphers are used in the process.
+
+
+### Informal:
+
+> Imagine a high-security office building where employees (clients) need to access classified documents stored in a secure room (service server V). To enter the building and the secure room, employees must go through a two-step authentication process.
+
+> At the entrance of the building, there is a security guard (authentication server AS) who verifies the employee's identity. Each employee has a unique ID card (public key) and a corresponding secret code (private key). The security guard has a master list of all employee ID cards and a special machine that can read the secret codes.
+
+> When an employee approaches the security guard, they present their ID card and whisper their password to the guard. The guard uses the special machine to verify the password and, if correct, gives the employee two envelopes. The first envelope contains a temporary access code (session key) for the employee to use with the floor manager (ticket-granting server TGS). This envelope can only be opened by the employee using their secret code. The second envelope is sealed and addressed to the floor manager, containing the employee's identity and the same temporary access code.
+
+> The employee then goes to the floor where the secure room is located and presents the sealed envelope to the floor manager. The floor manager opens the envelope, verifies the employee's identity, and checks the temporary access code. If everything is valid, the floor manager gives the employee two new envelopes. The first envelope contains another temporary access code for the employee to use with the secure room. The second envelope is sealed and addressed to the secure room, containing the employee's identity and the new temporary access code.
+
+> Finally, the employee approaches the secure room and presents the sealed envelope to the room's security system. The security system opens the envelope, verifies the employee's identity, and checks the temporary access code. If everything is valid, the security system allows the employee to enter the room and access the classified documents.
+
+> Throughout this process, the employee's secret code (private key) is never shared, and all communication between the employee, security guard, floor manager, and secure room is done using the employee's ID card (public key) and the respective ID cards of the other entities. This ensures that only authorized employees can access the classified documents and that the communication remains secure.
+
 
 B) Discuss how your protocol is resistant to replay attacks and satisfies properties like key
 freshness and forward/backward secrecy in your design.
 
-Replay Attack Resistance:
-The protocol is resistant to replay attacks due to the use of session keys and tickets that are specific to each authentication session. If an attacker intercepts a message and tries to replay it later, the following measures prevent the attack from succeeding:
+### Replay Attack Resistance:
+
+> The protocol is resistant to replay attacks due to the use of session keys and tickets that are specific to each authentication session. If an attacker intercepts a message and tries to replay it later, the following measures prevent the attack from succeeding:
 
 1. The ticket $E_{PR_{AS}}(C, TGS, K_{C,TGS})$ is encrypted with the $AS$'s private key, which only the $AS$ can decrypt. If an attacker replays this ticket, the $TGS$ will detect that the ticket is not fresh and reject it.
 
@@ -247,16 +304,20 @@ The protocol is resistant to replay attacks due to the use of session keys and t
 
 3. The session keys $K_{C,TGS}$ and $K_{C,V}$ are unique for each authentication session. Even if an attacker replays an old session key, it will not be accepted by the $TGS$ or $V$ because they expect a fresh session key for each new session.
 
-Key Freshness:
+### Key Freshness:
+
 The protocol ensures key freshness by generating new session keys for each authentication session. The $AS$ generates a new $K_{C,TGS}$ for each ticket granting ticket (TGT) request, and the $TGS$ generates a new $K_{C,V}$ for each service ticket request. This ensures that each session uses a unique key, preventing the use of old or stale keys.
 
-Forward Secrecy:
-Forward secrecy is maintained because the session keys are not derived from any long-term keys. Instead, they are randomly generated by the $AS$ and $TGS$ for each session. If an attacker compromises a session key, they cannot use it to decrypt any future communication because each new session will use a different session key.
+### Forward Secrecy:
 
-Backward Secrecy:
-Backward secrecy is also maintained due to the use of unique session keys for each authentication session. If an attacker compromises a session key, they cannot use it to decrypt any past communication because each previous session used a different session key.
+> Forward secrecy is maintained because the session keys are not derived from any long-term keys. Instead, they are randomly generated by the $AS$ and $TGS$ for each session. If an attacker compromises a session key, they cannot use it to decrypt any future communication because each new session will use a different session key.
 
-In the context of the office building analogy:
+### Backward Secrecy:
+
+> Backward secrecy is also maintained due to the use of unique session keys for each authentication session. If an attacker compromises a session key, they cannot use it to decrypt any past communication because each previous session used a different session key.
+
+### In the context of the office building analogy:
+
 - Replay attack resistance is like an attacker trying to use an old access pass (ticket) to enter the building or secure room. The security guard and floor manager will recognize that the pass is not fresh and deny access.
 
 - Key freshness is like the security guard and floor manager creating new, unique access passes (session keys) for each employee's visit, ensuring that old passes cannot be reused.
@@ -295,61 +356,7 @@ implementation is required.
 
 In conclusion, the use of public-key ciphers in the modified Kerberos protocol eliminates the need for pre-shared symmetric keys, simplifies key distribution, and enhances authentication security. However, it may introduce additional computational overhead compared to the original protocol. The assumptions made in the design, such as secure key management and storage, are critical to maintaining the security of the system.
  
-### Version 2
-
-Notation:
-- $C$: Client
-- $V$: Service Server
-- $AS$: Authentication Server
-- $TGS$: Ticket-granting Server
-- $PU_X$: Public key of entity $X$
-- $PR_X$: Private key of entity $X$
-- $E_{PU_X}(M)$: Message $M$ encrypted with the public key of entity $X$
-- $E_{PR_X}(M)$: Message $M$ encrypted with the private key of entity $X$
-- $K_{C,TGS}$: Session key between client and TGS
-- $K_{C,V}$: Session key between client and service server $V$
-
-Authentication process:
-1. $C \rightarrow AS$: $C, E_{PU_{AS}}(password)$
-   - Client sends its identity and password encrypted with the public key of $AS$.
-
-2. $AS \rightarrow C$: $E_{PU_C}(K_{C,TGS}), E_{PU_{TGS}}(C, K_{C,TGS})$
-   - $AS$ verifies the password using the centralized credentials database.
-   - If the password is correct, $AS$ generates a session key $K_{C,TGS}$ for communication between $C$ and $TGS$.
-   - $AS$ sends the session key $K_{C,TGS}$ encrypted with the public key of $C$ and a ticket containing $C$'s identity and $K_{C,TGS}$ encrypted with the public key of $TGS$.
-
-3. $C \rightarrow TGS$: $E_{PU_{TGS}}(C, K_{C,TGS}), E_{PR_C}(timestamp)$
-   - Client decrypts the session key $K_{C,TGS}$ using its private key.
-   - Client sends the ticket (containing $C$'s identity and $K_{C,TGS}$) encrypted with $TGS$'s public key and a timestamp encrypted with $C$'s private key.
-
-4. $TGS \rightarrow C$: $E_{PU_C}(K_{C,V}), E_{PU_V}(C, K_{C,V})$
-   - $TGS$ decrypts the ticket using its private key to obtain $C$'s identity and $K_{C,TGS}$.
-   - $TGS$ verifies the timestamp by decrypting it with $C$'s public key.
-   - If the timestamp is valid, $TGS$ generates a new session key $K_{C,V}$ for communication between $C$ and $V$.
-   - $TGS$ sends the session key $K_{C,V}$ encrypted with $C$'s public key and a ticket containing $C$'s identity and $K_{C,V}$ encrypted with $V$'s public key.
-
-5. $C \rightarrow V$: $E_{PU_V}(C, K_{C,V}), E_{PR_C}(timestamp)$
-   - Client decrypts the session key $K_{C,V}$ using its private key.
-   - Client sends the ticket (containing $C$'s identity and $K_{C,V}$) encrypted with $V$'s public key and a new timestamp encrypted with $C$'s private key.
-
-6. $V \rightarrow C$: $E_{K_{C,V}}(timestamp+1)$
-   - $V$ decrypts the ticket using its private key to obtain $C$'s identity and $K_{C,V}$.
-   - $V$ verifies the timestamp by decrypting it with $C$'s public key.
-   - If the timestamp is valid, $V$ increments the timestamp and encrypts it with the session key $K_{C,V}$ to prove its identity to $C$.
-
-In this variation, the session keys $K_{C,TGS}$ and $K_{C,V}$ are exchanged using public-key cryptography (RSA) instead of symmetric ciphers. The private keys are securely stored on each entity, and the public keys are used for encryption. The $AS$ is responsible for verifying the password using a centralized credentials database, but no symmetric ciphers are used in the process.
 
 
-Informal:
 
-Imagine a high-security office building where employees (clients) need to access classified documents stored in a secure room (service server V). To enter the building and the secure room, employees must go through a two-step authentication process.
 
-At the entrance of the building, there is a security guard (authentication server AS) who verifies the employee's identity. Each employee has a unique ID card (public key) and a corresponding secret code (private key). The security guard has a master list of all employee ID cards and a special machine that can read the secret codes.
-
-When an employee approaches the security guard, they present their ID card and whisper their password to the guard. The guard uses the special machine to verify the password and, if correct, gives the employee two envelopes. The first envelope contains a temporary access code (session key) for the employee to use with the floor manager (ticket-granting server TGS). This envelope can only be opened by the employee using their secret code. The second envelope is sealed and addressed to the floor manager, containing the employee's identity and the same temporary access code.
-
-The employee then goes to the floor where the secure room is located and presents the sealed envelope to the floor manager. The floor manager opens the envelope, verifies the employee's identity, and checks the temporary access code. If everything is valid, the floor manager gives the employee two new envelopes. The first envelope contains another temporary access code for the employee to use with the secure room. The second envelope is sealed and addressed to the secure room, containing the employee's identity and the new temporary access code.
-
-Finally, the employee approaches the secure room and presents the sealed envelope to the room's security system. The security system opens the envelope, verifies the employee's identity, and checks the temporary access code. If everything is valid, the security system allows the employee to enter the room and access the classified documents.
-
-Throughout this process, the employee's secret code (private key) is never shared, and all communication between the employee, security guard, floor manager, and secure room is done using the employee's ID card (public key) and the respective ID cards of the other entities. This ensures that only authorized employees can access the classified documents and that the communication remains secure.
