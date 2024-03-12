@@ -92,8 +92,8 @@ a=6, and Bob chooses the secret key b=16. Using the Diffie-Hellman Key Exchange
 Protocol, determine the common secret key shared between Alice and Bob. Show the steps
 taken to reach this result.
 
-$A = {g^{a} mod p}$
-  = 5^6 mod 23
+$A = g^{a}  mod  p$
+  $= 5^{6}  mod  23$
   = 8
 
 B = g^b mod p
