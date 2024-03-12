@@ -65,57 +65,57 @@ The cryptocurrency designers want to set the average time of creating the correc
 work for a new block to 4 minutes. Explain how this could be achieved (hint: how many
 leading zeros)
 
-	Setting the average time for creating the correct proof-of-work:
-	
-	To set the average time of creating the correct proof-of-work for a new block to 4 minutes, the designers need to adjust the difficulty level of the proof-of-work puzzle. In this case, the puzzle involves finding a hash value with a certain number of leading zeros.
-	
-	Given:
-	
-	Generating and comparing 2^10 (1024) hashes take 1 minute on an average machine.
-	The desired average time for creating the correct proof-of-work is 4 minutes.
-	To achieve this, the designers need to set the difficulty level such that, on average, it takes 4 times as many hash computations as it takes to generate and compare 2^10 (1024) hashes.
-	
-	Since generating and comparing 1024 hashes take 1 minute, generating and comparing 4 × 1024 = 4096 hashes should take approximately 4 minutes on an average machine.
-	
-	Therefore, the designers should set the difficulty level such that the correct proof-of-work requires finding a hash value with approximately log2(4096) ≈ 12 leading zeros.
-	
-	By adjusting the required number of leading zeros to 12, the average time for creating the correct proof-of-work should be around 4 minutes on an average machine.
+Setting the average time for creating the correct proof-of-work:
 
-	To achieve an average block creation time of 4 minutes using proof-of-work with SHA-256, we need to adjust the difficulty of the mining process by requiring a certain number of leading zeros in the hash output. Let's break this down step by step:
-	
-	1. Given:
-	   - Generating and comparing $2^{10}$ (1024) hashes take 1 minute on an average machine.
-	   - The desired average block creation time is 4 minutes.
-	
-	2. Let's assume the required number of leading zeros in the hash output is $n$.
-	
-	3. The probability of finding a hash with $n$ leading zeros is:
-	
-	   $P(n) = \frac{1}{2^{n}}$
-	
-	4. The expected number of hashes needed to find a valid hash with $n$ leading zeros is:
-	
-	   $E(n) = \frac{1}{P(n)} = 2^{n}$
-	
-	5. Since generating and comparing $2^{10}$ hashes take 1 minute, the time required to find a valid hash with $n$ leading zeros is:
-	
-	   $T(n) = \frac{E(n)}{2^{10}}$ minutes
-	
-	6. To achieve an average block creation time of 4 minutes, we need:
-	
-	   $T(n) = 4$
-	
-	   $\frac{E(n)}{2^{10}} = 4$
-	
-	   $E(n) = 4 \times 2^{10} = 2^{12}$
-	
-	7. From step 4, we know that $E(n) = 2^{n}$. Therefore:
-	
-	   $2^{n} = 2^{12}$
-	
-	   $n = 12$
-	
-	To achieve an average block creation time of 4 minutes using proof-of-work with SHA-256, the cryptocurrency designers should set the difficulty by requiring 12 leading zeros in the hash output. This way, miners will need to generate and compare approximately $2^{12}$ hashes on average to find a valid proof-of-work, which will take around 4 minutes on a machine with average processing/memory capability.
+To set the average time of creating the correct proof-of-work for a new block to 4 minutes, the designers need to adjust the difficulty level of the proof-of-work puzzle. In this case, the puzzle involves finding a hash value with a certain number of leading zeros.
+
+Given:
+
+Generating and comparing 2^10 (1024) hashes take 1 minute on an average machine.
+The desired average time for creating the correct proof-of-work is 4 minutes.
+To achieve this, the designers need to set the difficulty level such that, on average, it takes 4 times as many hash computations as it takes to generate and compare 2^10 (1024) hashes.
+
+Since generating and comparing 1024 hashes take 1 minute, generating and comparing 4 × 1024 = 4096 hashes should take approximately 4 minutes on an average machine.
+
+Therefore, the designers should set the difficulty level such that the correct proof-of-work requires finding a hash value with approximately log2(4096) ≈ 12 leading zeros.
+
+By adjusting the required number of leading zeros to 12, the average time for creating the correct proof-of-work should be around 4 minutes on an average machine.
+
+To achieve an average block creation time of 4 minutes using proof-of-work with SHA-256, we need to adjust the difficulty of the mining process by requiring a certain number of leading zeros in the hash output. Let's break this down step by step:
+
+1. Given:
+   - Generating and comparing $2^{10}$ (1024) hashes take 1 minute on an average machine.
+   - The desired average block creation time is 4 minutes.
+
+2. Let's assume the required number of leading zeros in the hash output is $n$.
+
+3. The probability of finding a hash with $n$ leading zeros is:
+
+   $P(n) = \frac{1}{2^{n}}$
+
+4. The expected number of hashes needed to find a valid hash with $n$ leading zeros is:
+
+   $E(n) = \frac{1}{P(n)} = 2^{n}$
+
+5. Since generating and comparing $2^{10}$ hashes take 1 minute, the time required to find a valid hash with $n$ leading zeros is:
+
+   $T(n) = \frac{E(n)}{2^{10}}$ minutes
+
+6. To achieve an average block creation time of 4 minutes, we need:
+
+   $T(n) = 4$
+
+   $\frac{E(n)}{2^{10}} = 4$
+
+   $E(n) = 4 \times 2^{10} = 2^{12}$
+
+7. From step 4, we know that $E(n) = 2^{n}$. Therefore:
+
+   $2^{n} = 2^{12}$
+
+   $n = 12$
+
+To achieve an average block creation time of 4 minutes using proof-of-work with SHA-256, the cryptocurrency designers should set the difficulty by requiring 12 leading zeros in the hash output. This way, miners will need to generate and compare approximately $2^{12}$ hashes on average to find a valid proof-of-work, which will take around 4 minutes on a machine with average processing/memory capability.
 
 
 
@@ -125,23 +125,23 @@ a=6, and Bob chooses the secret key b=16. Using the Diffie-Hellman Key Exchange
 Protocol, determine the common secret key shared between Alice and Bob. Show the steps
 taken to reach this result.
 
-	A = g^a mod p
-	  = 5^6 mod 23
-	  = 8
-	
-	B = g^b mod p
-	  = 5^16 mod 23
-	  = 3
-	
-	Alice:
-	s = B^a mod 23
-	  = 3^6 mod 23
-	  = 16
-	  
-	Bob:
-	s = A^b mod 23
-	  = 8^16 mod 23
-	  = 16
+A = g^a mod p
+  = 5^6 mod 23
+  = 8
+
+B = g^b mod p
+  = 5^16 mod 23
+  = 3
+
+Alice:
+s = B^a mod 23
+  = 3^6 mod 23
+  = 16
+  
+Bob:
+s = A^b mod 23
+  = 8^16 mod 23
+  = 16
 
 
 1.4. (10 points) A) If anyone can solve the Discrete Logarithm Problem (DLP), they can
@@ -149,41 +149,41 @@ easily break this cipher. Explain which cipher and why this is the case. B) If a
 solve the integer factorization problem, they can easily break this cipher. Explain which
 cipher and why this is the case. Focus on the ciphers discussed in the class.
 
-	A) The cipher that can be easily broken if someone solves the Discrete Logarithm Problem (DLP) is the Diffie-Hellman key exchange and the Elliptic Curve Cryptography (ECC), along with cryptosystems like ElGamal encryption. The Diffie-Hellman key exchange is a method of securely exchanging cryptographic keys over a public channel and is one of the first public-key protocols invented. Similarly, ECC is a public key encryption technique based on elliptic curve theory that can be used to create faster, smaller, and more efficient cryptographic keys. ElGamal encryption is another cryptographic system that relies on the discrete logarithm problem for its security.
-	
-	The discrete logarithm problem is the mathematical backbone of these systems. It involves finding the exponent x in the equation g^x = h mod p, where g, h, and p are known, and g is a generator of a finite group of order p. In the context of cryptography, this problem is deliberately made difficult to solve to ensure the security of the cryptographic system. If someone were able to efficiently solve the DLP, they could derive the private keys from the public keys in systems like Diffie-Hellman and ECC, allowing them to decrypt messages and forge signatures, effectively breaking the security of these systems.
+A) The cipher that can be easily broken if someone solves the Discrete Logarithm Problem (DLP) is the Diffie-Hellman key exchange and the Elliptic Curve Cryptography (ECC), along with cryptosystems like ElGamal encryption. The Diffie-Hellman key exchange is a method of securely exchanging cryptographic keys over a public channel and is one of the first public-key protocols invented. Similarly, ECC is a public key encryption technique based on elliptic curve theory that can be used to create faster, smaller, and more efficient cryptographic keys. ElGamal encryption is another cryptographic system that relies on the discrete logarithm problem for its security.
 
-	B) The cipher that can be easily broken if someone solves the integer factorization problem is the RSA algorithm. RSA (Rivest-Shamir-Adleman) is one of the first public-key cryptosystems and is widely used for secure data transmission. The security of RSA is based on the practical difficulty of factoring the product of two large prime numbers, the factoring problem.
-	
-	In RSA, the encryption key is public and it is different from the decryption key which is kept secret (private). A user of RSA creates and then publishes a public key based on two large prime numbers, along with an auxiliary value. The prime numbers must be kept secret. Anyone can use the public key to encrypt a message, but with currently published methods, if the public key is large enough, only someone with knowledge of the prime numbers can feasibly decode the message. If the integer factorization problem could be solved efficiently, an attacker could easily factor the large number that comprises the public key into its two prime factors. This would allow the attacker to derive the private key from the public key, decrypt messages, and break the cipher.
+The discrete logarithm problem is the mathematical backbone of these systems. It involves finding the exponent x in the equation g^x = h mod p, where g, h, and p are known, and g is a generator of a finite group of order p. In the context of cryptography, this problem is deliberately made difficult to solve to ensure the security of the cryptographic system. If someone were able to efficiently solve the DLP, they could derive the private keys from the public keys in systems like Diffie-Hellman and ECC, allowing them to decrypt messages and forge signatures, effectively breaking the security of these systems.
+
+B) The cipher that can be easily broken if someone solves the integer factorization problem is the RSA algorithm. RSA (Rivest-Shamir-Adleman) is one of the first public-key cryptosystems and is widely used for secure data transmission. The security of RSA is based on the practical difficulty of factoring the product of two large prime numbers, the factoring problem.
+
+In RSA, the encryption key is public and it is different from the decryption key which is kept secret (private). A user of RSA creates and then publishes a public key based on two large prime numbers, along with an auxiliary value. The prime numbers must be kept secret. Anyone can use the public key to encrypt a message, but with currently published methods, if the public key is large enough, only someone with knowledge of the prime numbers can feasibly decode the message. If the integer factorization problem could be solved efficiently, an attacker could easily factor the large number that comprises the public key into its two prime factors. This would allow the attacker to derive the private key from the public key, decrypt messages, and break the cipher.
 
 
 1.5. (10 points) Alice publishes her RSA public key: modulus N = 221 (what is p and q?) and
 exponent e = 5. Bob wants to send Alice the message m=50. What ciphertext does Bob send
 to Alice? Show the steps taken to reach this result.
 
-	1. Find the prime factors p and q of the modulus N:
-	   - N = 221 = 13 × 17
-	   - So, p = 13 and q = 17
-	
-	2. Calculate the totient function φ(N):
-	   - φ(N) = (p - 1)(q - 1)
-	   - φ(221) = (13 - 1)(17 - 1)
-	   - φ(221) = 12 × 16 = 192
-	
-	3. Check if the public exponent e is valid:
-	   - e should be coprime with φ(N)
-	   - gcd(e, φ(N)) should be 1
-	   - gcd(5, 192) = 1, so e = 5 is a valid public exponent
-	
-	4. Encrypt the message m using the public key (N, e):
-	   - Ciphertext c ≡ m^e (mod N)
-	   - c ≡ 50^5 (mod 221)
-	   - 50^5 = 312,500,000
-	   - c ≡ 50^5 (mod 221)
-	   - So, the ciphertext c = 33
-	
-	Bob will send the ciphertext c = 33 to Alice.
+1. Find the prime factors p and q of the modulus N:
+   - N = 221 = 13 × 17
+   - So, p = 13 and q = 17
+
+2. Calculate the totient function φ(N):
+   - φ(N) = (p - 1)(q - 1)
+   - φ(221) = (13 - 1)(17 - 1)
+   - φ(221) = 12 × 16 = 192
+
+3. Check if the public exponent e is valid:
+   - e should be coprime with φ(N)
+   - gcd(e, φ(N)) should be 1
+   - gcd(5, 192) = 1, so e = 5 is a valid public exponent
+
+4. Encrypt the message m using the public key (N, e):
+   - Ciphertext c ≡ m^e (mod N)
+   - c ≡ 50^5 (mod 221)
+   - 50^5 = 312,500,000
+   - c ≡ 50^5 (mod 221)
+   - So, the ciphertext c = 33
+
+Bob will send the ciphertext c = 33 to Alice.
 
 
 1.6. (10 points) Make a 3AES algorithm using the original AES-128 algorithm (similar to
@@ -191,45 +191,45 @@ how 3DES is built using DES). Discuss its properties (min and max key sizes, blo
 Also, analyze its robustness against brute-force attacks (hint: birthday attack).
 
 
-	## 3AES Algorithm
-	
-	The 3AES algorithm applies the AES-128 cipher three times with different 128-bit keys. The encryption process is as follows:
-	
-	1. Encrypt the plaintext block using AES-128 with key $K_1$, resulting in intermediate ciphertext $C_1$.
-	2. Decrypt $C_1$ using AES-128 with key $K_2$, resulting in intermediate plaintext $P_2$.
-	3. Encrypt $P_2$ using AES-128 with key $K_3$, resulting in the final ciphertext $C_3$.
-	
-	The decryption process applies the inverse operations in reverse order.
-	
-	## Properties
-	
-	- **Key sizes:** The 3AES algorithm uses three 128-bit keys, so the total key size is 384 bits. The minimum and maximum key sizes are both 384 bits.
-	
-	- **Block size:** Since AES-128 operates on 128-bit blocks, the block size of 3AES is also 128 bits.
-	
-	## Robustness Against Attacks
-	
-	### Brute-force Attack
-	
-	In a brute-force attack, the attacker tries all possible key combinations until the correct key is found. For 3AES with a 384-bit key, the number of possible keys is $2^{384}$. This is an extremely large keyspace, making brute-force attacks infeasible with current computing power.
-	
-	### Birthday Attack
-	
-	The birthday attack exploits collisions in the output of a cryptographic function. In the case of 3AES, the attacker would need to find a collision in the 128-bit block size.
-	
-	According to the birthday paradox, the probability of a collision after $q$ queries is approximately:
-	
-	$P(q) \approx 1 - e^{-q^2/2n}$
-	
-	where $n = 2^{128}$ (the number of possible outputs).
-	
-	To have a 50% probability of finding a collision, the number of queries needed is:
-	
-	$q \approx \sqrt{2n \cdot \ln(2)} \approx 2^{64}$
-	
-	This is still an extremely large number of queries, making the birthday attack impractical against 3AES.
-	
-	In conclusion, the 3AES algorithm, with its 384-bit key and 128-bit block size, provides strong security against brute-force and birthday attacks. However, it is important to note that the increased key size comes with a performance cost, as the encryption and decryption processes are three times slower compared to the original AES-128.
+## 3AES Algorithm
+
+The 3AES algorithm applies the AES-128 cipher three times with different 128-bit keys. The encryption process is as follows:
+
+1. Encrypt the plaintext block using AES-128 with key $K_1$, resulting in intermediate ciphertext $C_1$.
+2. Decrypt $C_1$ using AES-128 with key $K_2$, resulting in intermediate plaintext $P_2$.
+3. Encrypt $P_2$ using AES-128 with key $K_3$, resulting in the final ciphertext $C_3$.
+
+The decryption process applies the inverse operations in reverse order.
+
+## Properties
+
+- **Key sizes:** The 3AES algorithm uses three 128-bit keys, so the total key size is 384 bits. The minimum and maximum key sizes are both 384 bits.
+
+- **Block size:** Since AES-128 operates on 128-bit blocks, the block size of 3AES is also 128 bits.
+
+## Robustness Against Attacks
+
+### Brute-force Attack
+
+In a brute-force attack, the attacker tries all possible key combinations until the correct key is found. For 3AES with a 384-bit key, the number of possible keys is $2^{384}$. This is an extremely large keyspace, making brute-force attacks infeasible with current computing power.
+
+### Birthday Attack
+
+The birthday attack exploits collisions in the output of a cryptographic function. In the case of 3AES, the attacker would need to find a collision in the 128-bit block size.
+
+According to the birthday paradox, the probability of a collision after $q$ queries is approximately:
+
+$P(q) \approx 1 - e^{-q^2/2n}$
+
+where $n = 2^{128}$ (the number of possible outputs).
+
+To have a 50% probability of finding a collision, the number of queries needed is:
+
+$q \approx \sqrt{2n \cdot \ln(2)} \approx 2^{64}$
+
+This is still an extremely large number of queries, making the birthday attack impractical against 3AES.
+
+In conclusion, the 3AES algorithm, with its 384-bit key and 128-bit block size, provides strong security against brute-force and birthday attacks. However, it is important to note that the increased key size comes with a performance cost, as the encryption and decryption processes are three times slower compared to the original AES-128.
 
 
 
@@ -258,90 +258,90 @@ Formally and informally define every communication step and use discussed notati
 our discussion on Kerberos) to show what specific messages are exchanged between which
 entities and why.
 
-	Informal:
-		Imagine a high-security office building where employees need to access classified documents stored in a secure room (Server V). To enter the building and the secure room, employees must go through a multi-step authentication process.
-		
-		At the entrance of the building, there is a security guard (Authentication Server, AS) who verifies the employee's identity. Each employee has a unique ID card (public key) and a corresponding secret code (private key). The security guard has a master list of all employee ID cards and a special key (AS's private key) to create access passes.
-		
-		When an employee (Client, C) wants to enter, they approach the security guard and present their ID card along with a password written in a secret code that only the guard can read (password encrypted with AS's public key). The guard checks the password against a secure database and, if valid, creates two access passes: one for the employee (session key encrypted with the employee's public key) and another for the floor manager (ticket encrypted with the AS's private key), containing the employee's ID and the floor they are allowed to access.
-		
-		The employee then goes to the floor manager's office (Ticket Granting Server, TGS) and presents the access pass from the security guard (ticket from AS). The floor manager verifies the pass using the guard's special key (AS's public key) and, if valid, creates two new access passes: one for the employee (session key encrypted with the employee's public key) and another for the secure room (ticket encrypted with the floor manager's private key), containing the employee's ID and the specific room they are allowed to enter.
-		
-		Finally, the employee approaches the secure room and presents the access pass from the floor manager (ticket from TGS). The room's security system (Server V) verifies the pass using the floor manager's ID card (TGS's public key), and if valid, grants the employee access to the classified documents.
-		
-		Throughout this process, the employee's identity is verified, and access is granted using unique ID cards and secret codes (public/private keys) at each step, ensuring a secure and efficient authentication system.
+Informal:
+	Imagine a high-security office building where employees need to access classified documents stored in a secure room (Server V). To enter the building and the secure room, employees must go through a multi-step authentication process.
 	
-	Formal:
-		Kerberos (variation) authentication system using public/private keys and asymmetric ciphers:
-	
-		Notation:
-		- $C$: Client
-		- $V$: Service Server
-		- $AS$: Authentication Server
-		- $TGS$: Ticket Granting Server
-		- $PU_X$: Public key of entity $X$
-		- $PR_X$: Private key of entity $X$
-		- $E_{PU_X}(M)$: Message $M$ encrypted with public key of $X$
-		- $E_{PR_X}(M)$: Message $M$ encrypted with private key of $X$
-		- $K_{C,TGS}$: Session key between client and TGS
-		- $K_{C,V}$: Session key between client and service server $V$
-		
-		Authentication Process:
-		
-		1. $C \rightarrow AS$: $C, E_{PU_{AS}}(password)$
-		   - Client sends its ID and password encrypted with $AS$'s public key to the $AS$
-		
-		2. $AS \rightarrow C$: $E_{PU_C}(K_{C,TGS}), E_{PR_{AS}}(C, TGS, K_{C,TGS})$
-		   - $AS$ verifies the password using the credentials database
-		   - If valid, $AS$ generates session key $K_{C,TGS}$
-		   - $AS$ sends $K_{C,TGS}$ encrypted with $C$'s public key and a ticket encrypted with $AS$'s private key containing $C$'s ID, $TGS$'s ID, and $K_{C,TGS}$
-		
-		3. $C \rightarrow TGS$: $E_{PR_{AS}}(C, TGS, K_{C,TGS}), E_{PU_{TGS}}(C, V)$
-		   - $C$ decrypts $E_{PU_C}(K_{C,TGS})$ to get $K_{C,TGS}$
-		   - $C$ sends the ticket $E_{PR_{AS}}(C, TGS, K_{C,TGS})$ and a request for a ticket to $V$ encrypted with $TGS$'s public key
-		
-		4. $TGS \rightarrow C$: $E_{PU_C}(K_{C,V}), E_{PR_{TGS}}(C, V, K_{C,V})$
-		   - $TGS$ verifies the ticket using $AS$'s public key
-		   - If valid, $TGS$ generates session key $K_{C,V}$
-		   - $TGS$ sends $K_{C,V}$ encrypted with $C$'s public key and a ticket encrypted with $TGS$'s private key containing $C$'s ID, $V$'s ID, and $K_{C,V}$
-		
-		5. $C \rightarrow V$: $E_{PR_{TGS}}(C, V, K_{C,V})$
-		   - $C$ decrypts $E_{PU_C}(K_{C,V})$ to get $K_{C,V}$
-		   - $C$ sends the ticket $E_{PR_{TGS}}(C, V, K_{C,V})$ to $V$
-		
-		6. $V$ verifies the ticket using $TGS$'s public key. If valid, $C$ is authenticated and $K_{C,V}$ is used for secure communication between $C$ and $V$.
-		
-		This variation maintains the basic Kerberos structure but replaces symmetric keys and ciphers with public/private keys and asymmetric ciphers for exchanging session keys. The centralized password verification by the $AS$ is preserved.
+At the entrance of the building, there is a security guard (Authentication Server, AS) who verifies the employee's identity. Each employee has a unique ID card (public key) and a corresponding secret code (private key). The security guard has a master list of all employee ID cards and a special key (AS's private key) to create access passes.
+
+When an employee (Client, C) wants to enter, they approach the security guard and present their ID card along with a password written in a secret code that only the guard can read (password encrypted with AS's public key). The guard checks the password against a secure database and, if valid, creates two access passes: one for the employee (session key encrypted with the employee's public key) and another for the floor manager (ticket encrypted with the AS's private key), containing the employee's ID and the floor they are allowed to access.
+
+The employee then goes to the floor manager's office (Ticket Granting Server, TGS) and presents the access pass from the security guard (ticket from AS). The floor manager verifies the pass using the guard's special key (AS's public key) and, if valid, creates two new access passes: one for the employee (session key encrypted with the employee's public key) and another for the secure room (ticket encrypted with the floor manager's private key), containing the employee's ID and the specific room they are allowed to enter.
+
+Finally, the employee approaches the secure room and presents the access pass from the floor manager (ticket from TGS). The room's security system (Server V) verifies the pass using the floor manager's ID card (TGS's public key), and if valid, grants the employee access to the classified documents.
+
+Throughout this process, the employee's identity is verified, and access is granted using unique ID cards and secret codes (public/private keys) at each step, ensuring a secure and efficient authentication system.
+
+Formal:
+	Kerberos (variation) authentication system using public/private keys and asymmetric ciphers:
+
+Notation:
+- $C$: Client
+- $V$: Service Server
+- $AS$: Authentication Server
+- $TGS$: Ticket Granting Server
+- $PU_X$: Public key of entity $X$
+- $PR_X$: Private key of entity $X$
+- $E_{PU_X}(M)$: Message $M$ encrypted with public key of $X$
+- $E_{PR_X}(M)$: Message $M$ encrypted with private key of $X$
+- $K_{C,TGS}$: Session key between client and TGS
+- $K_{C,V}$: Session key between client and service server $V$
+
+Authentication Process:
+
+1. $C \rightarrow AS$: $C, E_{PU_{AS}}(password)$
+   - Client sends its ID and password encrypted with $AS$'s public key to the $AS$
+
+2. $AS \rightarrow C$: $E_{PU_C}(K_{C,TGS}), E_{PR_{AS}}(C, TGS, K_{C,TGS})$
+   - $AS$ verifies the password using the credentials database
+   - If valid, $AS$ generates session key $K_{C,TGS}$
+   - $AS$ sends $K_{C,TGS}$ encrypted with $C$'s public key and a ticket encrypted with $AS$'s private key containing $C$'s ID, $TGS$'s ID, and $K_{C,TGS}$
+
+3. $C \rightarrow TGS$: $E_{PR_{AS}}(C, TGS, K_{C,TGS}), E_{PU_{TGS}}(C, V)$
+   - $C$ decrypts $E_{PU_C}(K_{C,TGS})$ to get $K_{C,TGS}$
+   - $C$ sends the ticket $E_{PR_{AS}}(C, TGS, K_{C,TGS})$ and a request for a ticket to $V$ encrypted with $TGS$'s public key
+
+4. $TGS \rightarrow C$: $E_{PU_C}(K_{C,V}), E_{PR_{TGS}}(C, V, K_{C,V})$
+   - $TGS$ verifies the ticket using $AS$'s public key
+   - If valid, $TGS$ generates session key $K_{C,V}$
+   - $TGS$ sends $K_{C,V}$ encrypted with $C$'s public key and a ticket encrypted with $TGS$'s private key containing $C$'s ID, $V$'s ID, and $K_{C,V}$
+
+5. $C \rightarrow V$: $E_{PR_{TGS}}(C, V, K_{C,V})$
+   - $C$ decrypts $E_{PU_C}(K_{C,V})$ to get $K_{C,V}$
+   - $C$ sends the ticket $E_{PR_{TGS}}(C, V, K_{C,V})$ to $V$
+
+6. $V$ verifies the ticket using $TGS$'s public key. If valid, $C$ is authenticated and $K_{C,V}$ is used for secure communication between $C$ and $V$.
+
+This variation maintains the basic Kerberos structure but replaces symmetric keys and ciphers with public/private keys and asymmetric ciphers for exchanging session keys. The centralized password verification by the $AS$ is preserved.
 
 B) Discuss how your protocol is resistant to replay attacks and satisfies properties like key
 freshness and forward/backward secrecy in your design.
 
-	Replay Attack Resistance:
-	The protocol is resistant to replay attacks due to the use of session keys and tickets that are specific to each authentication session. If an attacker intercepts a message and tries to replay it later, the following measures prevent the attack from succeeding:
+Replay Attack Resistance:
+The protocol is resistant to replay attacks due to the use of session keys and tickets that are specific to each authentication session. If an attacker intercepts a message and tries to replay it later, the following measures prevent the attack from succeeding:
+
+1. The ticket $E_{PR_{AS}}(C, TGS, K_{C,TGS})$ is encrypted with the $AS$'s private key, which only the $AS$ can decrypt. If an attacker replays this ticket, the $TGS$ will detect that the ticket is not fresh and reject it.
+
+2. The ticket $E_{PR_{TGS}}(C, V, K_{C,V})$ is encrypted with the $TGS$'s private key, which only the $TGS$ can decrypt. If an attacker replays this ticket, the server $V$ will detect that the ticket is not fresh and reject it.
+
+3. The session keys $K_{C,TGS}$ and $K_{C,V}$ are unique for each authentication session. Even if an attacker replays an old session key, it will not be accepted by the $TGS$ or $V$ because they expect a fresh session key for each new session.
+
+Key Freshness:
+The protocol ensures key freshness by generating new session keys for each authentication session. The $AS$ generates a new $K_{C,TGS}$ for each ticket granting ticket (TGT) request, and the $TGS$ generates a new $K_{C,V}$ for each service ticket request. This ensures that each session uses a unique key, preventing the use of old or stale keys.
+
+Forward Secrecy:
+Forward secrecy is maintained because the session keys are not derived from any long-term keys. Instead, they are randomly generated by the $AS$ and $TGS$ for each session. If an attacker compromises a session key, they cannot use it to decrypt any future communication because each new session will use a different session key.
+
+Backward Secrecy:
+Backward secrecy is also maintained due to the use of unique session keys for each authentication session. If an attacker compromises a session key, they cannot use it to decrypt any past communication because each previous session used a different session key.
+
+In the context of the office building analogy:
+- Replay attack resistance is like an attacker trying to use an old access pass (ticket) to enter the building or secure room. The security guard and floor manager will recognize that the pass is not fresh and deny access.
+
+- Key freshness is like the security guard and floor manager creating new, unique access passes (session keys) for each employee's visit, ensuring that old passes cannot be reused.
+
+- Forward secrecy is like an attacker obtaining an employee's access pass for a specific visit. They cannot use this pass to access the building or secure room in the future because new passes are issued for each visit.
 	
-	1. The ticket $E_{PR_{AS}}(C, TGS, K_{C,TGS})$ is encrypted with the $AS$'s private key, which only the $AS$ can decrypt. If an attacker replays this ticket, the $TGS$ will detect that the ticket is not fresh and reject it.
-	
-	2. The ticket $E_{PR_{TGS}}(C, V, K_{C,V})$ is encrypted with the $TGS$'s private key, which only the $TGS$ can decrypt. If an attacker replays this ticket, the server $V$ will detect that the ticket is not fresh and reject it.
-	
-	3. The session keys $K_{C,TGS}$ and $K_{C,V}$ are unique for each authentication session. Even if an attacker replays an old session key, it will not be accepted by the $TGS$ or $V$ because they expect a fresh session key for each new session.
-	
-	Key Freshness:
-	The protocol ensures key freshness by generating new session keys for each authentication session. The $AS$ generates a new $K_{C,TGS}$ for each ticket granting ticket (TGT) request, and the $TGS$ generates a new $K_{C,V}$ for each service ticket request. This ensures that each session uses a unique key, preventing the use of old or stale keys.
-	
-	Forward Secrecy:
-	Forward secrecy is maintained because the session keys are not derived from any long-term keys. Instead, they are randomly generated by the $AS$ and $TGS$ for each session. If an attacker compromises a session key, they cannot use it to decrypt any future communication because each new session will use a different session key.
-	
-	Backward Secrecy:
-	Backward secrecy is also maintained due to the use of unique session keys for each authentication session. If an attacker compromises a session key, they cannot use it to decrypt any past communication because each previous session used a different session key.
-	
-	In the context of the office building analogy:
-	- Replay attack resistance is like an attacker trying to use an old access pass (ticket) to enter the building or secure room. The security guard and floor manager will recognize that the pass is not fresh and deny access.
-	
-	- Key freshness is like the security guard and floor manager creating new, unique access passes (session keys) for each employee's visit, ensuring that old passes cannot be reused.
-	
-	- Forward secrecy is like an attacker obtaining an employee's access pass for a specific visit. They cannot use this pass to access the building or secure room in the future because new passes are issued for each visit.
-	
-	- Backward secrecy is like an attacker obtaining an employee's access pass for a specific visit. They cannot use this pass to determine which rooms the employee accessed in the past because each previous visit used a different, unique access pass.
+- Backward secrecy is like an attacker obtaining an employee's access pass for a specific visit. They cannot use this pass to determine which rooms the employee accessed in the past because each previous visit used a different, unique access pass.
 
 C) Compare your protocol to the original Kerberos protocol. How did the use of public-key
 ciphers impact your design?
@@ -351,30 +351,30 @@ justify them in your response. Note that you just need to design the protocol, b
 implementation is required.
 
 
-	Similarities:
-	1. The overall structure of the protocol remains the same, with the client authenticating through the $AS$ and $TGS$ to obtain a service ticket for accessing the server $V$.
-	
-	2. The protocol still relies on a centralized authentication server ($AS$) to verify the client's identity and a ticket granting server ($TGS$) to issue service tickets.
-	
-	3. The use of tickets and session keys to establish secure communication channels between the client and the servers is maintained.
-	
-	Differences and Impact of Public-Key Ciphers:
-	1. Key Distribution: In the original Kerberos protocol, symmetric keys are pre-shared between the client and $AS$, $AS$ and $TGS$, and $TGS$ and $V$. With public-key ciphers, the need for pre-shared symmetric keys is eliminated. Instead, each entity has a pair of public/private keys, with the public keys known to the $AS$. This simplifies key distribution and management.
-	
-	2. Authentication: In the original protocol, the client's identity is verified by the $AS$ using a pre-shared symmetric key. In the modified protocol, the client's password is encrypted with the $AS$'s public key, allowing the $AS$ to authenticate the client without needing a pre-shared key. This enhances security by eliminating the need to store long-term symmetric keys.
-	
-	3. Ticket Granting: The original protocol uses symmetric keys shared between the $AS$ and $TGS$, and between the $TGS$ and $V$ to encrypt the tickets. The modified protocol uses the private keys of the $AS$ and $TGS$ to encrypt the tickets, which can be verified by the $TGS$ and $V$ using the corresponding public keys. This eliminates the need for shared symmetric keys between these entities.
-	
-	4. Performance: Public-key cryptography is generally more computationally expensive than symmetric-key cryptography. As a result, the modified protocol may have higher computational overhead compared to the original Kerberos protocol. However, this impact can be mitigated by using efficient public-key algorithms and optimizing the implementation.
-	
-	Assumptions:
-	1. The $AS$ securely stores and manages the public keys of all entities ($C$, $V$, and $TGS$) in addition to the credentials database for password verification.
-	
-	2. The private keys are securely stored by each entity and are not compromised. If a private key is compromised, the security of the entire system could be jeopardized.
-	
-	3. The communication channels between the entities are secure, and there is a mechanism to prevent tampering and eavesdropping of messages.
-	
-	In conclusion, the use of public-key ciphers in the modified Kerberos protocol eliminates the need for pre-shared symmetric keys, simplifies key distribution, and enhances authentication security. However, it may introduce additional computational overhead compared to the original protocol. The assumptions made in the design, such as secure key management and storage, are critical to maintaining the security of the system.
+Similarities:
+1. The overall structure of the protocol remains the same, with the client authenticating through the $AS$ and $TGS$ to obtain a service ticket for accessing the server $V$.
+
+2. The protocol still relies on a centralized authentication server ($AS$) to verify the client's identity and a ticket granting server ($TGS$) to issue service tickets.
+
+3. The use of tickets and session keys to establish secure communication channels between the client and the servers is maintained.
+
+Differences and Impact of Public-Key Ciphers:
+1. Key Distribution: In the original Kerberos protocol, symmetric keys are pre-shared between the client and $AS$, $AS$ and $TGS$, and $TGS$ and $V$. With public-key ciphers, the need for pre-shared symmetric keys is eliminated. Instead, each entity has a pair of public/private keys, with the public keys known to the $AS$. This simplifies key distribution and management.
+
+2. Authentication: In the original protocol, the client's identity is verified by the $AS$ using a pre-shared symmetric key. In the modified protocol, the client's password is encrypted with the $AS$'s public key, allowing the $AS$ to authenticate the client without needing a pre-shared key. This enhances security by eliminating the need to store long-term symmetric keys.
+
+3. Ticket Granting: The original protocol uses symmetric keys shared between the $AS$ and $TGS$, and between the $TGS$ and $V$ to encrypt the tickets. The modified protocol uses the private keys of the $AS$ and $TGS$ to encrypt the tickets, which can be verified by the $TGS$ and $V$ using the corresponding public keys. This eliminates the need for shared symmetric keys between these entities.
+
+4. Performance: Public-key cryptography is generally more computationally expensive than symmetric-key cryptography. As a result, the modified protocol may have higher computational overhead compared to the original Kerberos protocol. However, this impact can be mitigated by using efficient public-key algorithms and optimizing the implementation.
+
+Assumptions:
+1. The $AS$ securely stores and manages the public keys of all entities ($C$, $V$, and $TGS$) in addition to the credentials database for password verification.
+
+2. The private keys are securely stored by each entity and are not compromised. If a private key is compromised, the security of the entire system could be jeopardized.
+
+3. The communication channels between the entities are secure, and there is a mechanism to prevent tampering and eavesdropping of messages.
+
+In conclusion, the use of public-key ciphers in the modified Kerberos protocol eliminates the need for pre-shared symmetric keys, simplifies key distribution, and enhances authentication security. However, it may introduce additional computational overhead compared to the original protocol. The assumptions made in the design, such as secure key management and storage, are critical to maintaining the security of the system.
  
 ### Version 2
 
