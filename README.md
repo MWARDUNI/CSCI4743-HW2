@@ -1,5 +1,7 @@
 # CSCI4743-HW2
 
+Matthew Ward
+
 
 Section 1 – “Comprehend and Apply” Questions
 1.1. (10 points): Compare Stream Ciphers and Block Ciphers in terms of (1) diffusion, (2)
