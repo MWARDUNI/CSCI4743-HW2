@@ -13,17 +13,17 @@ Comparison of Stream Ciphers and Block Ciphers:
 
 A) Higher Diffusion/Confusion/Error Propagation:
 
-> Block Ciphers generally have higher diffusion and confusion properties compared to Stream Ciphers. This is because Block Ciphers operate on fixed-size blocks of data, and their design incorporates complex diffusion and confusion layers, such as substitution boxes (S-boxes) and permutation operations. These layers ensure that even a small change in the input block results in a significant change in the output block, providing strong diffusion. Additionally, the key is mixed into the cipher in a highly nonlinear way, creating confusion.
+> Block Ciphers have higher diffusion and confusion properties compared to Stream Ciphers. This is because Block Ciphers operate on fixed-size blocks of data, and their design incorporates complex diffusion and confusion layers, such as substitution boxes (S-boxes) and permutation operations. These layers ensure that even a small change in the input block results in a significant change in the output block, providing strong diffusion. Additionally, the key is mixed into the cipher in a highly nonlinear way, creating confusion.
 
-> As for error propagation, Block Ciphers have higher error propagation when used in certain modes of operation, such as Electronic Codebook (ECB) mode or Cipher Block Chaining (CBC) mode without proper error handling. In these modes, a single bit error in the ciphertext can affect an entire block of the plaintext.
+> Block Ciphers have higher error propagation when used in certain modes of operation, such as Electronic Codebook (ECB) mode or Cipher Block Chaining (CBC) mode without proper error handling. In these modes, a single bit error in the ciphertext can affect an entire block of the plaintext.
 
 B) Lower Diffusion/Confusion/Error Propagation:
 
 > Stream Ciphers typically have lower diffusion and confusion properties compared to Block Ciphers. This is because Stream Ciphers operate on individual bits or bytes of data, and their design focuses more on generating a pseudorandom keystream that is combined with the plaintext. The diffusion and confusion properties rely heavily on the strength of the keystream generation algorithm.
 
-> As for error propagation, Stream Ciphers generally have lower error propagation. If a single bit error occurs in the ciphertext, it typically affects only the corresponding bit or byte in the plaintext, and the error does not propagate further.
+> Stream Ciphers generally have lower error propagation. If a single bit error occurs in the ciphertext, it typically affects only the corresponding bit or byte in the plaintext, and the error does not propagate further.
 
-> However, modes of operation for Block Ciphers can affect their diffusion, confusion, and error propagation properties. For example, the Cipher Feedback (CFB) and Output Feedback (OFB) modes of operation can provide better error propagation characteristics for Block Ciphers, as errors in the ciphertext only affect a limited number of plaintext bits or bytes.
+> Modes of operation for Block Ciphers can affect their diffusion, confusion, and error propagation properties. For example, the Cipher Feedback (CFB) and Output Feedback (OFB) modes of operation can provide better error propagation characteristics for Block Ciphers, as errors in the ciphertext only affect a limited number of plaintext bits or bytes.
 
 
 
@@ -34,29 +34,15 @@ The cryptocurrency designers want to set the average time of creating the correc
 work for a new block to 4 minutes. Explain how this could be achieved (hint: how many
 leading zeros)
 
-Setting the average time for creating the correct proof-of-work:
 
-To set the average time of creating the correct proof-of-work for a new block to 4 minutes, the designers need to adjust the difficulty level of the proof-of-work puzzle. In this case, the puzzle involves finding a hash value with a certain number of leading zeros.
+log2(4096) ≈ 12 leading zeros.
 
-Given:
-
-Generating and comparing 2^10 (1024) hashes take 1 minute on an average machine.
-The desired average time for creating the correct proof-of-work is 4 minutes.
-To achieve this, the designers need to set the difficulty level such that, on average, it takes 4 times as many hash computations as it takes to generate and compare 2^10 (1024) hashes.
-
-Since generating and comparing 1024 hashes take 1 minute, generating and comparing 4 × 1024 = 4096 hashes should take approximately 4 minutes on an average machine.
-
-Therefore, the designers should set the difficulty level such that the correct proof-of-work requires finding a hash value with approximately log2(4096) ≈ 12 leading zeros.
-
-By adjusting the required number of leading zeros to 12, the average time for creating the correct proof-of-work should be around 4 minutes on an average machine.
-
-To achieve an average block creation time of 4 minutes using proof-of-work with SHA-256, we need to adjust the difficulty of the mining process by requiring a certain number of leading zeros in the hash output. Let's break this down step by step:
 
 1. Given:
    - Generating and comparing $2^{10}$ (1024) hashes take 1 minute on an average machine.
    - The desired average block creation time is 4 minutes.
 
-2. Let's assume the required number of leading zeros in the hash output is $n$.
+2. Assume the required number of leading zeros in the hash output is $n$.
 
 3. Probability of finding a hash with $n$ leading zeros is:
 
@@ -66,11 +52,11 @@ To achieve an average block creation time of 4 minutes using proof-of-work with 
 
    $E(n) = \frac{1}{P(n)} = 2^{n}$
 
-5. Since generating and comparing $2^{10}$ hashes take 1 minute, the time required to find a valid hash with $n$ leading zeros is:
+5. Generating and comparing $2^{10}$ hashes take 1 minute, the time required to find a valid hash with $n$ leading zeros is:
 
    $T(n) = \frac{E(n)}{2^{10}}$ minutes
 
-6. To achieve an average block creation time of 4 minutes, we need:
+6. Average block creation time of 4 minutes:
 
    $T(n) = 4$
 
@@ -78,7 +64,7 @@ To achieve an average block creation time of 4 minutes using proof-of-work with 
 
    $E(n) = 4 \times 2^{10} = 2^{12}$
 
-7. From step 4, we know that $E(n) = 2^{n}$. Therefore:
+7. From step 4, $E(n) = 2^{n}$. Therefore:
 
    $2^{n} = 2^{12}$
 
@@ -159,8 +145,6 @@ to Alice? Show the steps taken to reach this result.
 Bob will send the ciphertext $c = 33$ to Alice.
 
 
-
-
 1.6. (10 points) Make a 3AES algorithm using the original AES-128 algorithm (similar to
 how 3DES is built using DES). Discuss its properties (min and max key sizes, block size).
 Also, analyze its robustness against brute-force attacks (hint: birthday attack).
@@ -174,7 +158,7 @@ The 3AES algorithm applies the AES-128 cipher three times with different 128-bit
 2. Decrypt $C_1$ using AES-128 with key $K_2$, resulting in intermediate plaintext $P_2$.
 3. Encrypt $P_2$ using AES-128 with key $K_3$, resulting in the final ciphertext $C_3$.
 
-The decryption process applies the inverse operations in reverse order.
+Decryption applies the inverse operations in reverse order.
 
 ## Properties
 
