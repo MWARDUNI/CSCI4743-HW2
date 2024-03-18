@@ -1,6 +1,7 @@
 # CSCI4743-HW2
 
-Matthew Ward
+**Matthew Ward**
+
 Due: 03.17.23
 
 
